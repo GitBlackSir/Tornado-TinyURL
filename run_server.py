@@ -12,17 +12,17 @@ import tornado.web
 import tornado.ioloop
 import tornado.httpserver
 import logging.config
-import by_usage as by_usage
-import by_mysql as by_mysql
-import by_base62 as by_base62
+import src.shell_usage as by_usage
+import src.orm as by_mysql
+from src import base62 as by_base62
 import conf
 
-EPOCH_TIMESTAMP = 550281600000
-ADDRESS = '127.0.0.1'
-R_ADDRESS = '127.0.0.1'
-PORT=1104
-DC_ID=0
-WORKER_ID=0
+EPOCH_TIMESTAMP = conf.EPOCH_TIMESTAMP
+ADDRESS = conf.ADDRESS
+R_ADDRESS = conf.R_ADDRESS
+PORT = conf.PORT
+DC_ID = conf.DC_ID
+WORKER_ID= conf.DC_ID
 
 class Generator(object):
     def __init__(self, dc, worker):
@@ -79,7 +79,8 @@ class IDHandler(tornado.web.RequestHandler):
     def get(self):
         generated_id = self.application.id_generator.get_next_id()
         self.set_header("Content-Type", "application/json")
-        id_url_json = {'id':generated_id,'short_url':by_base62._10to_62Base(generated_id)}
+        id_url_dict = {'id':generated_id,'short_url':by_base62._10to_62Base(generated_id)}
+        id_url_json = json.dumps(id_url_dict)
         self.write(id_url_json)
         # self.write(str(generated_id))
         self.flush()  # avoid ETag, etc generation
@@ -116,10 +117,10 @@ if __name__ == '__main__':
             if name in ('-m', '--init_mysql'):
                 by_mysql.init_mysql()
                 print("MYSQL建表成功！")
-                print("IP:", conf.host)
-                print("PORT:", conf.port)
-                print("DB_NAME", conf.db_name)
-                print("TB_NAME", conf.tb_name)
+                print("IP:", conf.mysql_host)
+                print("PORT:", conf.mysql_port)
+                print("DB_NAME", conf.mysql_db_name)
+                print("TB_NAME", conf.mysql_tb_name)
                 sys.exit()
 
             elif name in ('-i', '--ip'):
@@ -130,7 +131,7 @@ if __name__ == '__main__':
                 DC_ID = int(value)
             elif name in ('-w', '--worker'):
                 WORKER_ID = int(value)
-        session = conf.DBSession()
+        session = conf.mysql_DBSession()
         session.add(by_mysql.T(datacenter_id=DC_ID, port=PORT, worker_id=WORKER_ID, unix_pid=os.getpid(), status=True))
         session.commit()
         session.close()
@@ -147,7 +148,7 @@ if __name__ == '__main__':
             print(os.getpid())
             tornado.ioloop.IOLoop.instance().start()
         finally:
-            session = conf.DBSession()
+            session = conf.mysql_DBSession()
             session.query(by_mysql.T).filter(by_mysql.T.unix_pid == os.getpid(),
                                              by_mysql.T.datacenter_id == DC_ID,
                                              by_mysql.T.worker_id == WORKER_ID).update({by_mysql.T.status:False})

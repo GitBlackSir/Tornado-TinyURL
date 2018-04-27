@@ -4,9 +4,7 @@
 # __Email__ : gitblacksir@gmail.com
 
 from sqlalchemy import *
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, String, create_engine
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column
 from sqlalchemy.ext.declarative import declarative_base
 import conf
 
@@ -15,7 +13,7 @@ Base = declarative_base()
 # 定义User对象:
 class T(Base):
     # 表的名字:
-    __tablename__ = conf.tb_name
+    __tablename__ = conf.mysql_tb_name
     id = Column(Integer, primary_key=True)
     datacenter_id = Column(Integer)
     worker_id = Column(Integer)
@@ -24,13 +22,13 @@ class T(Base):
     status = Column(Boolean)
 
 def list_server():
-    session = conf.DBSession()
+    session = conf.mysql_DBSession()
     # 创建Query查询，filter是where条件，最后调用one()返回唯一行，如果调用all()则返回所有行:
     print(session.query(T).all())
     session.close()
 
 def list_host_mysql():
-    session = conf.DBSession()
+    session = conf.mysql_DBSession()
     # 创建Query查询，filter是where条件，最后调用one()返回唯一行，如果调用all()则返回所有行:
     print('HongKong    Tencent Cloud   ---> DC_ID:0  IP:119.28.76.35')
     print('LosAngeles  Bandwagon Host  ---> DC_ID:1  IP:119.28.76.35')
@@ -43,12 +41,12 @@ def list_host_mysql():
     session.close()
 
 def init_mysql():
-    metadata = MetaData(conf.engine)
-    table = Table(conf.tb_name, metadata,
+    metadata = MetaData(conf.mysql_engine)
+    table = Table(conf.mysql_tb_name, metadata,
                   Column('id', Integer, primary_key=True),
                   Column('datacenter_id',Integer),
                   Column('worker_id', Integer),
                   Column('unix_pid', Integer),
                   Column('port', Integer),
                   Column('status', Boolean))
-    metadata.create_all(conf.engine)
+    metadata.create_all(conf.mysql_engine)
