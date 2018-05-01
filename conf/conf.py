@@ -10,6 +10,7 @@ from sqlalchemy.orm import sessionmaker
 
 server_api_for_develop = \
     {
+        'HOST_NAME'        :    'http://',
         'EPOCH_TIMESTAMP'  :    550281600000,
         'ADDRESS'          :    '127.0.0.1',
         'R_ADDRESS'        :    '127.0.0.1',
@@ -19,6 +20,8 @@ server_api_for_develop = \
     }
 server_api_for_user = \
     {
+        'SPILT_HOST_NAME'  :    't.1024bit.io',
+        'HOST_NAME'        :    'http://t.1024bit.io/',
         'ADDRESS'          :    '127.0.0.1',
         'R_ADDRESS'        :    '127.0.0.1',
         'PORT'             :    2222,
@@ -29,8 +32,8 @@ tornado_redirct_port       =    8889
 
 mysql_conf = \
     {
-        'user'          : 'root',
-        'password'      : '123456',
+        'user'          : 'user',
+        'password'      : 'password',
         'host'          : '127.0.0.1',
         'port'          : '3306',
         'db_name'       : 'TORNADO_TINY_URL',
