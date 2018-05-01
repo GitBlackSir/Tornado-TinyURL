@@ -6,14 +6,14 @@
 from sqlalchemy import *
 from sqlalchemy import Column
 from sqlalchemy.ext.declarative import declarative_base
-import conf
+import conf.conf as conf
 
 # 创建对象的基类:
 Base = declarative_base()
 # 定义User对象:
 class T(Base):
     # 表的名字:
-    __tablename__ = conf.mysql_tb_name
+    __tablename__ = conf.mysql_conf['tb_name']
     id = Column(Integer, primary_key=True)
     datacenter_id = Column(Integer)
     worker_id = Column(Integer)
@@ -42,7 +42,7 @@ def list_host_mysql():
 
 def init_mysql():
     metadata = MetaData(conf.mysql_engine)
-    table = Table(conf.mysql_tb_name, metadata,
+    table = Table(conf.mysql_conf['tb_name'], metadata,
                   Column('id', Integer, primary_key=True),
                   Column('datacenter_id',Integer),
                   Column('worker_id', Integer),
