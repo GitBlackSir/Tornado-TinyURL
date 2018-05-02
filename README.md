@@ -23,8 +23,8 @@ $ screen python3.6 server_redirct.py &
 
 ```
 json = {
-	"status": 0
-	"messages": "SUCCESSFUL!"
+	"status": 0,
+	"messages": "SUCCESSFUL!",
 	"id": 4088633170486886401,
 	"short_url": "4S1YXNt1JN7",
 	"time": 1525087710.975234,
