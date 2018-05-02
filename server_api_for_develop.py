@@ -78,13 +78,13 @@ class IDHandler(tornado.web.RequestHandler):
         try:
             generated_id = self.application.id_generator.get_next_id()
             self.set_header("Content-Type", "application/json")
-            id_url_dict = {'id':generated_id,'short_url':by_base62._10to_62Base(generated_id),"time":time.time(),"data_center_id":DC_ID,'worker_id':WORKER_ID,"status":1}
+            id_url_dict = {"status":0,"messages": "SUCCESSFUL!",'id':generated_id,'short_url':by_base62._10to_62Base(generated_id),"time":time.time(),"data_center_id":DC_ID,'worker_id':WORKER_ID}
             id_url_json = json.dumps(id_url_dict)
             self.write(id_url_json)
             # self.write(str(generated_id))
             self.flush()  # avoid ETag, etc generation
         except:
-            id_url_dict = {"time":time.time(),"status":0}
+            id_url_dict = {"status":1,"messages": "ERROR!",'id': None,'short_url': None,"time":time.time(),"data_center_id":DC_ID,'worker_id':WORKER_ID}
             id_url_json = json.dumps(id_url_dict)
             self.write(id_url_json)
             # self.write(str(generated_id))

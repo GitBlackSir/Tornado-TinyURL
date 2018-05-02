@@ -28,19 +28,19 @@ class Api_Long_To_Short_URL_Handler(tornado.web.RequestHandler):
             else:
                 if is_true_url.is_url(args[0]):
                     if conf.redis_conn.get(args[0]):
-                        dict = {'status':2, 'messages':'this short_url from redis', 'short_url': conf.server_api_for_user['HOST_NAME'] + conf.redis_conn.get(args[0]).decode(), }
+                        dict = {'status':2, 'messages':'SUCCESSFUL SHORT_URL FROM REDIS!', 'short_url': conf.server_api_for_user['HOST_NAME'] + conf.redis_conn.get(args[0]).decode(), }
                         self.write(json.dumps(dict))
                     else:
                         id_url_dict = client.get_guid()
                         conf.redis_conn.set(id_url_dict['short_url'], args[0])
                         conf.redis_conn.set(args[0], id_url_dict['short_url'])
-                        dict = {'status': 3, 'messages': 'server api for develop successful','short_url': conf.server_api_for_user['HOST_NAME']+ id_url_dict['short_url']}
+                        dict = {'status': 3, 'messages': 'SUCCESSFUL SHORT_URL FROM API_DEVELOP!','short_url': conf.server_api_for_user['HOST_NAME']+ id_url_dict['short_url']}
                         self.write(json.dumps(dict))
                 else:
-                    dict = {'status': 4, 'messages':'URL INPUT ERRO!', 'short_url':None}
+                    dict = {'status': 4, 'messages':'URL INPUT ERROR!', 'short_url':None}
                     self.write(json.dumps(dict))
         except:
-            data = {'status': 5, 'messages':'URL ERRO!','short_url':None }
+            data = {'status': 5, 'messages':'URL ERROR!','short_url':None }
             self.write(json.dumps(data))
 
 
@@ -53,16 +53,16 @@ class Api_Short_To_Long_URL_Handler(tornado.web.RequestHandler):
             else:
                 if is_true_url.is_url(args[0]):
                     try:
-                        dict = {'status': 1, 'messages': 'successfully short to lang url', 'long_url': conf.redis_conn.get(args[0].split('/')[3]).decode()}
+                        dict = {'status': 1, 'messages': 'SUCCESSFUL!', 'long_url': conf.redis_conn.get(args[0].split('/')[3]).decode()}
                         self.write(json.dumps(dict))
                     except:
-                        dict = {'status': 2, 'messages': 'URL EG:'+ conf.server_api_for_user['HOST_NAME'] +'xxxxx','long_url': None}
+                        dict = {'status': 2, 'messages': 'URL ERROR! EG:'+ conf.server_api_for_user['HOST_NAME'] +'xxxxx','long_url': None}
                         self.write(json.dumps(dict))
                 else:
-                    dict = {'status': 3, 'messages': 'URL ERRO!', 'long_url': None}
+                    dict = {'status': 3, 'messages': 'URL ERROR!', 'long_url': None}
                     self.write(json.dumps(dict))
         except:
-            dict = {'status': 4, 'messages': 'URL ERRO!', 'long_url': None}
+            dict = {'status': 4, 'messages': 'URL ERROR!', 'long_url': None}
 class Api_For_User_Application(tornado.web.Application):
     def __init__(self, **settings):
         handlers = [
