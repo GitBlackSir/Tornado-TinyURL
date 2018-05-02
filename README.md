@@ -36,9 +36,9 @@ json = {
 > -  "status":
 >	- 0 `请求成功`
 >		- messages": "SUCCESSFUL!"
->		- "id": 0 `由分布式发号器计算出的`64bit`整数`
+>		- "id": 0 `由分布式发号器计算出的64bit整数`
 > 		- "short_url": "http://t.1024bit.io/4S5zsUzQOlj" `64bit整数转62进制[0-9a-zA-Z]字符串`
->		- "time": 1525087234.847292 `unix当前时间戳`毫秒`
+>		- "time": 1525087234.847292 `unix当前时间戳毫秒`
 >		- "data_center_id":0 `分布式进程所在数据中心集群ID`
 > 		- "worker_id":0 `分布式进程所在工作机器，可理解进为程标识码ID`
 >	- 1 `请求失败`
@@ -94,6 +94,3 @@ json = {
 > 	- 2 "messages": "URL ERROR! EG:http://t.1024bit.io/+xxxxx","long_url": None
 >	- 3 "messages": "URL ERROR!","long_url": None
 >	- 4 "messages": "URL ERROR!","long_url": None
-
-
-
