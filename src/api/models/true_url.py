@@ -1,25 +1,22 @@
-# -*- coding:UTF-8 -*-
 # __Auth__  : @GitBlackSir
-# __Date__  : 2018/4/26
+# __Date__  : 2018/5/3
 # __Email__ : gitblacksir@gmail.com
 
 import requests
-
-def get_status(url):
-    try:
-        r = requests.get(url, allow_redirects=False)
-        return r.status_code
-    except:
-        return False
-
-
-def is_value_url(URL):
-    status = get_status(URL)
-    if status == 200:
-        return True
-    else:
-        return False
-
+# def get_status(url):
+#     try:
+#         r = requests.get(url, allow_redirects=False)
+#         return r.status_code
+#     except:
+#         return False
+#
+#
+# def is_value_url(URL):
+#     status = get_status(URL)
+#     if status == 200:
+#         return True
+#     else:
+#         return False
 def is_url(url):
     import re
     regex = re.compile(
