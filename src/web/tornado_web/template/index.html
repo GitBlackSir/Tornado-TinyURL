@@ -1,0 +1,98 @@
+{% extends './base_html/base.html' %}
+
+{% block nav %}
+{% end %}
+
+{% block content %}
+<div class="newsletter-subscribe">
+        <br class="container">
+            <div class="intro">
+                <h2 class="text-center">基于分布式发号器的短网址系统接口</h2>
+                <p class="text-center">面向开发人员与自媒体用户的API</p>
+            </div>
+            <form class="form-inline" method="post" id="commentForm">
+                <div class="form-group"><textarea class="form-control"cols="30"rows="10"name="styled_message"id="na"placeholder="长网址 🍪"></textarea></div>
+                <div class="form-group"><input class="btn btn-primary" type="button" value="压缩" onclick="indexAjax();"/></div>
+            </form>
+		</br>
+			<form class="form-inline" method="post" id="commentForm1">
+                <div class="form-group"><textarea class="form-control"cols="30"rows="10"name="styled_message"id="nb"placeholder="短网址 🚀"></textarea></div>
+                <div class="form-group"><input class="btn btn-primary" type="button" value="还原" onclick="restoreAjax();"/></div>
+            </form>
+		</br>
+	<form class="form-inline">
+		<button class="btn-danger" onclick="document.getElementById('commentForm1').reset(),document.getElementById('commentForm').reset();return false">清屏</button></form>
+	</div>
+</div>
+
+
+
+<div class="features-clean">
+        <div class="container">
+            <div class="intro"></div>
+            <div class="row features">
+                <div class="col-sm-6 col-lg-4 item">
+                    <!--<i class="fa fa-map-marker icon"></i>-->
+                    <h3 class="name">💻 64bitID/62进制字符串API</h3>
+                    <p class="description"><a href="http://tinyurl-api.1024bit.io/json&get-id-url">tinyurl-api.1024bit.io/json&get-id-url</a></p>
+                    <p class="description">&nbsp;</p>
+                    <p class="description">json = {</p>
+                    <p class="description">"status": 0,</p>
+                    <p class="description">"messages": "SUCCESSFUL!",</p>
+                    <p class="description">"id": 4088633170486886401,</p>
+                    <p class="description">"short_url": "4SeX7N2RNYt",</p>
+                    <p class="description">"time": 1525087710.975234,</p>
+                    <p class="description">"data_center_id": 0,</p>
+                    <p class="description">"worker_id": 0,</p>
+                    <p class="description">}</p>
+
+
+
+                </div>
+                <div class="col-sm-6 col-lg-4 item">
+                    <!--<i class="fa fa-plane icon"></i>-->
+                    <h3 class="name">🌪 长网址压缩API</h3>
+                    <p class="description"><a href="http://tinyurl-api.1024bit.io/json&convert=URL">tinyurl-api.1024bit.io/json&convert='URL'</a></p>
+                    <p class="description">&nbsp;</p>
+
+                    <p class="description">json = {</p>
+                    <p class="description">"status": 3,</p>
+                    <p class="description">"messages": "SUCCESSFUL SHORT_URL FROM API!",</p>
+                    <p class="description">"short_url": "http://t.1024bit.io/4S5A2O6o9wZ"</p>
+                    <p class="description">}</p>
+                </div>
+                <div class="col-sm-6 col-lg-4 item">
+                    <!--<i class="fa fa-clock-o icon"></i>-->
+                    <h3 class="name">🌪 短网址还原API</h3>
+                    <p class="description"><a href="http://tinyurl-api.1024bit.io/json&restore=URL">tinyurl-api.1024bit.io/json&restore='URL'</a></p>
+                    <p class="description">&nbsp;</p>
+                    <p class="description">json = {</p>
+                    <p class="description">"status": 1,</p>
+                    <p class="description">"messages": "SUCCESSFULL!",</p>
+                    <p class="description">"long_url": "https://www.google.com/ncr"</p>
+                    <p class="description">}</p>
+                </div>
+            </div>
+        </div>
+</div>
+
+<!--<form action="#" method="post" id="commentForm" class="ajax_form">-->
+
+	<!--<div>-->
+		<!--<div>-->
+			<!--<div id="edit_buttons"></div>-->
+			<!--<label for="na" >清输入长网址：</label>-->
+			<!--<textarea cols="30" rows="10" name="styled_message" id="na"></textarea>-->
+		<!--</div>-->
+		<!--<div>-->
+			<!--<label for="nb">短网址:</label>-->
+			<!--<input readonly="" type="text"id="nb" />-->
+		<!--</div>-->
+	<!--</div>-->
+	<!--<div>-->
+		<!--<a onclick="document.getElementById('commentForm').reset();return false" class="link-reset btn"><span>清空</span></a>-->
+		<!--<span>-->
+			<!--<input type="button" value="压缩一下" onclick="indexAjax();"/></span>-->
+	<!--</div>-->
+<!--</form>-->
+{% end %}
