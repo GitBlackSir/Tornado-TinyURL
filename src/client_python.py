@@ -11,7 +11,7 @@ class Client(object):
         self.url = url
         self.host = host
         self.port = port
-        self.api_develop = 'http://%s:%s/' % (self.host, self.port)
+        self.api_develop = 'http://%s:%s/json&get-id-url' % (self.host, self.port)
         self.api_user_get_tinyurl = 'http://%s:%s/json&convert=%s/' %(self.host,self.port,self.url)
         self.api_user_get_longurl = 'http://%s:%s/json&restore=%s/' %(self.host,self.port,self.url)
 
@@ -26,4 +26,5 @@ class Client(object):
         res = requests.get(self.api_user_get_longurl)
         return json.loads(res.text)
 
-# client = Client('HOST', 'PORT').get_id()
+for i in range(100):
+    print(Client('tinyurl-api.1024bit.io',80).get_id())
