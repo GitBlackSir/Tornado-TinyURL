@@ -69,9 +69,9 @@ class RestoreHandler(tornado.web.RequestHandler):
 
 class ApiHandler(tornado.web.RequestHandler):
     def get(self):
-        self.redirect("http://1024bit.io/blog/2018/05/01/基于分布式发号器的短网址系统API-Reference/")
+        self.redirect("http://blog.1024bit.io/blog/2018/05/01/%E5%9F%BA%E4%BA%8E%E5%88%86%E5%B8%83%E5%BC%8FID%E5%8F%91%E5%8F%B7%E5%99%A8%E7%9A%84%E7%9F%AD%E7%BD%91%E5%9D%80%E7%B3%BB%E7%BB%9FAPI%E8%AF%B4%E6%98%8E/")
 
 class BlogHandler(tornado.web.RequestHandler):
     def get(self):
-        self.redirect('http://1024bit.io')
+        self.redirect('http://blog.1024bit.io')
 

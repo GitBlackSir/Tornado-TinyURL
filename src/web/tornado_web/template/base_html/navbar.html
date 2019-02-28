@@ -30,13 +30,17 @@
 <!--</div>-->
 <div>
     <nav class="navbar navbar-light navbar-expand-md navigation-clean-button">
-        <div class="container"><a class="navbar-brand" href="{{ reverse_url('index') }}">龙卷风·短网址Beta</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="container"><a class="navbar-brand" href="{{ reverse_url('index') }}">龙卷风·短网址接口使用示例</a><button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav mr-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ reverse_url('api') }}">API&CLIENT</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ reverse_url('blog') }}">博客</a></li>
-                </ul><span class="navbar-text actions"> <a class="btn btn-light action-button" role="button" href="#">Docker</a></span></div>
+                    <li class="nav-item" role="presentation"><a class="nav-link" href="{{ reverse_url('api') }}">API & PYTHON CLIENT</a></li>
+                    <!--<li class="nav-item" role="presentation"><a class="nav-link" href="{{ reverse_url('blog') }}">博客</a></li>-->
+                </ul>
+                <span class="navbar-text actions">
+                    <a class="btn btn-light action-button" role="button" href="{{ reverse_url('blog')}}">BLOG</a>
+                </span>
+            </div>
         </div>
     </nav>
 </div>

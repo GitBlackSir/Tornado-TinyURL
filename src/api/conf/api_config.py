@@ -25,7 +25,7 @@ mysql= {
         'db_name'       : 'TORNADO_TINY_URL',
         'tb_name'       : 'process_info',
 }
-mysql_engine = create_engine('mysql+mysqlconnector://' +mysql['user'] +':' + mysql['password'] +'@' + mysql['host'] +':' + mysql['port'] +'/' + mysql['db_name'])
+mysql_engine = create_engine('mysql+pymysql://' +mysql['user'] +':' + mysql['password'] +'@' + mysql['host'] +':' + mysql['port'] +'/' + mysql['db_name'])
 mysql_conn          = mysql_engine.connect()
 mysql_DBSession     = sessionmaker(bind=mysql_engine)
 redis_conn          = redis.Redis(host='127.0.0.1', port=6666,db=0)
