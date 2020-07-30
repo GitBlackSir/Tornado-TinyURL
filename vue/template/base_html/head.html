@@ -1,0 +1,86 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>龙卷风·短网址TinyURL</title>
+    <link rel="stylesheet" href="{{static_url('css/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/font-awesome.min.css')}}">
+    <link rel="stylesheet" href="{{static_url('css/ionicons.min.css')}}">
+    <!--<link rel="stylesheet" href="{{static_url('css/googleapis.css')}}">-->
+    <link rel="stylesheet" href="{{static_url('css/main.css')}}">
+
+<!-- main JS libs -->
+
+    <link rel="bookmark" type="image/x-icon" href="{{static_url('images/favicon.ico')}}" mce_href="{{static_url('images/favicon.ico')}}"/>
+    <link rel="icon" type="image/x-icon" href="{{static_url('images/favicon.ico')}}" mce_href="{{static_url('images/favicon.ico')}}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{static_url('images/favicon.ico')}}" mce_href="{{static_url('images/favicon.ico')}}"/>
+    <script src="{{static_url('js/jquery.min.js')}}"></script>
+    <script src="{{static_url('js/bootstrap.bundle.min.js')}}"></script>
+    <script src="{{static_url('js/script.min.js')}}"></script>
+    <!--<script type="text/javascript">-->
+								<!--bkLib.onDomLoaded(function() {-->
+									<!--var myNicEditor = new nicEditor({-->
+										<!--buttonList : [-->
+											<!--'bold',-->
+											<!--'italic',-->
+											<!--'underline',-->
+											<!--'forecolor',-->
+											<!--'left',-->
+											<!--'center',-->
+											<!--'right',-->
+											<!--'justify'-->
+										<!--]-->
+									<!--});-->
+									<!--myNicEditor.setPanel('edit_buttons');-->
+									<!--myNicEditor.addInstance('styled_message');-->
+								<!--});-->
+								<!--setTimeout(function () {-->
+									<!--$('.nicEdit-container').css('width', '331px');-->
+									<!--$('.nicEdit-main').css('width', '307px');-->
+								<!--}, 2000);-->
+							<!--</script>-->
+
+<!-- Include all needed stylesheets and scripts here -->
+<script type="text/javascript">
+            function indexAjax(){
+                var temp = $('#na').val();//从第一个输入框里获取数据
+                $.ajax({
+                    url:"/",//调用的是这个url对应的那个Handler
+                    type:"POST",//Post方法
+                    data:{dat:temp,who:1},//要往服务器传递的数据
+                    success:function(arg){//成功从服务端获取到值，参数arg表示从服务端的Handler获取的数据
+                        var obj = jQuery.parseJSON(arg);//获取的数据一般为json格式，用这个方法来解析数据
+                        console.log(obj.status);
+                        console.log(obj.messages);
+                        console.log(obj.data);
+                        $('#na').val(obj.data[0]);//给第二个输入框赋值
+                    },
+                    error:function(){//获取失败
+                        console.log("failed");
+                    }
+                });
+            }
+            function restoreAjax(){
+                var temp = $('#nb').val();//从第一个输入框里获取数据
+                $.ajax({
+                    url:"/restore?",//调用的是这个url对应的那个Handler
+                    type:"POST",//Post方法
+                    data:{dat:temp,who:0},//要往服务器传递的数据
+                    success:function(arg){//成功从服务端获取到值，参数arg表示从服务端的Handler获取的数据
+                        var obj = jQuery.parseJSON(arg);//获取的数据一般为json格式，用这个方法来解析数据
+                        console.log(obj.status);
+                        console.log(obj.messages);
+                        console.log(obj.data);
+                        $('#nb').val(obj.data[0]);//给第二个输入框赋值
+                    },
+                    error:function(){//获取失败
+                        console.log("failed");
+                    }
+                });
+            }
+</script>
+
+<style type="text/css">
+    .gradient {filter: none !important;}
+</style>
+<![endif]-->
+</head>
